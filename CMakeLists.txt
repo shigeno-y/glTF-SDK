@@ -51,17 +51,11 @@ endif()
 
 add_subdirectory(GLTFSDK)
 
-if(TARGET RapidJSON)
-message("TARGET RapidJSON found")
-endif()
-
 if(RapidJSON_FOUND)
-    message(FATAL_ERROR "RapidJSON_FOUND")
     target_include_directories(GLTFSDK
         PUBLIC $<BUILD_INTERFACE:${RapidJSON_INCLUDE_DIRS}>
     )
 elseif(TARGET RapidJSON)
-message(FATAL_ERROR "TARGET RapidJSON")
     get_target_property(RapidJSON_INCLUDE_DIRS RapidJSON INTERFACE_INCLUDE_DIRECTORIES)
     target_include_directories(GLTFSDK
         PUBLIC $<BUILD_INTERFACE:${RapidJSON_INCLUDE_DIRS}>

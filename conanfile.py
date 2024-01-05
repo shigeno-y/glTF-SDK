@@ -10,6 +10,7 @@ class MicrosoftGLTFSDKForkedConan(ConanFile):
     description = "Robust Parsers for Protocols & File Formats"
     license = "MIT License"
     settings = "os", "compiler", "build_type", "arch"
+    no_copy_source = True
 
     options = {
         # library option

@@ -1,5 +1,5 @@
 # Check if the RapidJSON target has already been defined
-if (TARGET RapidJSON)
+if (TARGET rapidjson::rapidjson)
   message(AUTHOR_WARNING "RapidJSON target already defined, skipping")
   return()
 endif()
