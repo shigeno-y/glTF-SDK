@@ -51,6 +51,10 @@ endif()
 
 add_subdirectory(GLTFSDK)
 
+if(TARGET RapidJSON)
+message("TARGET RapidJSON found")
+endif()
+
 if(RapidJSON_FOUND)
     message(FATAL_ERROR "RapidJSON_FOUND")
     target_include_directories(GLTFSDK
