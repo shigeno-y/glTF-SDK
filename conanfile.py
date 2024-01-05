@@ -1,6 +1,5 @@
 from conans import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, CMakeDeps, cmake_layout
-from conan.tools.files import apply_conandata_patches
 from conan.tools.scm import Git
 
 
@@ -61,7 +60,6 @@ class MicrosoftGLTFSDKForkedConan(ConanFile):
         deps.generate()
 
     def build(self):
-        apply_conandata_patches(self)
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
