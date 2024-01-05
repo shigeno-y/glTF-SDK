@@ -58,7 +58,7 @@ function(CreateGLTFInstallTargets target platform)
     install(DIRECTORY ${CMAKE_SOURCE_DIR}/GLTFSDK/Inc/ DESTINATION include)
 
     if (MSVC)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pdb DESTINATION ${CMAKE_SOURCE_DIR}/Built/Out/${platform}/$<CONFIG>/${PROJECT_NAME})
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pdb DESTINATION ${CMAKE_SOURCE_DIR}/Built/Out/${platform}/$<CONFIG>/${PROJECT_NAME})
     endif()
 
 endfunction(CreateGLTFInstallTargets)

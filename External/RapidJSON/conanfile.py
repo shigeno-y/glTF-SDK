@@ -4,33 +4,27 @@ from conan.tools.scm import Git
 
 
 class MicrosoftGLTFSDKForkedConan(ConanFile):
-    name = "msgltfsdk"
-    url = "https://github.com/shigeno-y/glTF-SDK"
+    name = "rapidjson"
+    url = "https://github.com/Tencent/rapidjson.git"
     homepage = url
     description = "Robust Parsers for Protocols & File Formats"
     license = "MIT License"
     settings = "os", "compiler", "build_type", "arch"
 
     options = {
-        # library option
         "shared": [True, False],
         "fPIC": [True, False],
-        # this lib
-        "with_unittest": [True, False],
-        "with_sample": [True, False],
     }
     default_options = {
         "shared": True,
         "fPIC": True,
-        "with_unittest": False,
-        "with_sample": False,
     }
-    version = "0.1.0"
+    version = "only_for_msgltfsdk"
 
     def source(self):
         git = Git(self)
         git.fetch_commit(
-            "https://github.com/shigeno-y/glTF-SDK.git", "feature/vrm"
+            "https://github.com/Tencent/rapidjson.git", "232389d4f1012dddec4ef84861face2d2ba85709"
         )
         git.run("submodule update --init --recursive --recommend-shallow --depth 1")
 
@@ -42,8 +36,7 @@ class MicrosoftGLTFSDKForkedConan(ConanFile):
             del self.options.fPIC
 
     def requirements(self):
-        self.requires("gtest/[^1.10]")
-        self.requires("rapidjson/only_for_msgltfsdk")
+        pass
 
     def build_requirements(self):
         self.build_requires("cmake/[^3]")
@@ -51,9 +44,6 @@ class MicrosoftGLTFSDKForkedConan(ConanFile):
 
     def generate(self):
         tc = CMakeToolchain(self, "Ninja")
-
-        tc.cache_variables["ENABLE_UNIT_TESTS"] = self.options.with_unittest
-        tc.cache_variables["ENABLE_SAMPLES"] = self.options.with_sample
         tc.generate()
 
         deps = CMakeDeps(self)
